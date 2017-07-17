@@ -7,7 +7,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="DarkGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="{Binding Title}" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <ListBox ItemsSource="{Binding TodoElems}" Background="Transparent" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox/>
+                        <TextBlock Text="{Binding}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="+" Command="{Binding OnAddButtonCommand}" Grid.Column="1" Grid.Row="2"/>
+        <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="2">
+            <TextBox Text="{Binding ModifiedTitle, Mode=TwoWay}"/>
+            <Button Content="Modify title" Command="{Binding OnModifyTitleButtonCommand}"/>
+        </StackPanel>
     </Grid>
 </Page>

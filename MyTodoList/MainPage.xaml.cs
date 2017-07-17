@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyTodoList.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace MyTodoList
     {
         public MainPage()
         {
+            DataContext = new MainPageViewModel();
             this.InitializeComponent();
         }
     }
