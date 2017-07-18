@@ -22,7 +22,12 @@ namespace MyTodoList.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ObservableCollection<string> TodoElems { get; set; }
+        internal void ElemClicked(MyElem elemClicked)
+        {
+
+        }
+
+        public ObservableCollection<MyElem> TodoElems { get; set; }
 
         public string Title
         {
@@ -54,19 +59,20 @@ namespace MyTodoList.ViewModels
 
         public ICommand OnAddButtonCommand { get; set; }
         public ICommand OnModifyTitleButtonCommand { get; set; }
-        
+
+
 
         public MainPageViewModel()
         {
             _modifiedTitle = "Entrez le nouveau titre ici";
-            TodoElems = new ObservableCollection<string>
+            TodoElems = new ObservableCollection<MyElem>
                 {
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
+                    new MyElem("1", this),
+                    new MyElem("2", this),
+                    new MyElem("3", this),
+                    new MyElem("4", this),
+                    new MyElem("5", this),
+                    new MyElem("6", this),
                 };
             OnAddButtonCommand = new BaseCommand(AddElem);
             OnModifyTitleButtonCommand = new BaseCommand(ChangeTitle);
@@ -79,7 +85,7 @@ namespace MyTodoList.ViewModels
 
         public void AddElem(object parameter)
         {
-            TodoElems.Add("42");
+            TodoElems.Add(new MyElem("42", this));
         }
 
     }

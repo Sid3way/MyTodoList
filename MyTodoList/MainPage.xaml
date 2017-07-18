@@ -23,7 +23,8 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <CheckBox/>
-                        <TextBlock Text="{Binding}" />
+                        <TextBlock Text="{Binding MyText}" />
+                        <Button Content="Click me" Command="{Binding OnElemButtonClickedCommand}" CommandParameter="{Binding MyText}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
