@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyTodoList.ViewModels
 {
-    public abstract class ViewModelBase
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
 

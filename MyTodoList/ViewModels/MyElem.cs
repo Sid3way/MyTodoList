@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,16 +8,19 @@ using System.Windows.Input;
 
 namespace MyTodoList.ViewModels
 {
-    public class MyElem
+    public class MyElem : AElem
     {
-        private MainPageViewModel _parent;
+        private MyWeek _parent;
+
+        public ObservableCollection<MySubElem> SubTasks { get; set; }
 
         public string MyText { get; set; }
         public ICommand OnElemButtonClickedCommand { get; set; }
 
-        public MyElem(string content, MainPageViewModel parent)
+        public MyElem(string content, MyWeek parent)
         {
             _parent = parent;
+            SubTasks = new ObservableCollection<MySubElem>();
             MyText = content;
             OnElemButtonClickedCommand = new BaseCommand(ElemClicked);
         }

@@ -9,25 +9,16 @@ using System.Windows.Input;
 
 namespace MyTodoList.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : ViewModelBase
     {
         private string _title = "My base title";
         private string _modifiedTitle;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private  Dictionary<int, MyWeek> _weeks;
 
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public MyWeek CurrentWeek { get; set; }
 
-        internal void ElemClicked(MyElem elemClicked)
-        {
-
-        }
-
-        public ObservableCollection<MyElem> TodoElems { get; set; }
+        public DateTimeOffset SelectedDate { get; set; }
 
         public string Title
         {
@@ -40,7 +31,7 @@ namespace MyTodoList.ViewModels
                 if (!String.IsNullOrEmpty(value))
                 {
                     _title = value;
-                    RaisePropertyChanged("Title");
+                    RaisePropertyChanged(nameof(Title));
                 }
             }
         }
@@ -56,8 +47,6 @@ namespace MyTodoList.ViewModels
                 _modifiedTitle = value;
             }
         }
-
-        public ICommand OnAddButtonCommand { get; set; }
         public ICommand OnModifyTitleButtonCommand { get; set; }
 
 
@@ -65,27 +54,14 @@ namespace MyTodoList.ViewModels
         public MainPageViewModel()
         {
             _modifiedTitle = "Entrez le nouveau titre ici";
-            TodoElems = new ObservableCollection<MyElem>
-                {
-                    new MyElem("1", this),
-                    new MyElem("2", this),
-                    new MyElem("3", this),
-                    new MyElem("4", this),
-                    new MyElem("5", this),
-                    new MyElem("6", this),
-                };
-            OnAddButtonCommand = new BaseCommand(AddElem);
             OnModifyTitleButtonCommand = new BaseCommand(ChangeTitle);
+            SelectedDate = DateTimeOffset.Now;
+            CurrentWeek = new MyWeek();
         }
 
         private void ChangeTitle(object obj)
         {
             Title = ModifiedTitle;
-        }
-
-        public void AddElem(object parameter)
-        {
-            TodoElems.Add(new MyElem("42", this));
         }
 
     }

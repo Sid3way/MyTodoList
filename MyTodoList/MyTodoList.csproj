@@ -100,8 +100,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AElem.cs" />
+    <Compile Include="ViewModels\IElem.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MyElem.cs" />
+    <Compile Include="ViewModels\MySubElem.cs" />
+    <Compile Include="ViewModels\MyWeek.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

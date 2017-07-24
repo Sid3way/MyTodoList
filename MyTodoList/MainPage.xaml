@@ -17,8 +17,12 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding Title}" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-        <ListBox ItemsSource="{Binding TodoElems}" Background="Transparent" Grid.Row="1">
+        <StackPanel Orientation="Horizontal"  Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button Content="&lt;" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold"/>
+            <CalendarDatePicker Date="{Binding SelectedDate, Mode=TwoWay}"/>
+            <Button Content="&gt;" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold"/>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding Tasks}" DataContext="{Binding CurrentWeek}" Background="Transparent" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
